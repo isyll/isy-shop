@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "742573825383",
+    "project_id": "isy-shop",
+    "storage_bucket": "isy-shop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742573825383:android:594d6f2c271bc5780263c2",
+        "android_client_info": {
+          "package_name": "com.isyll.dev.isy_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB43NZ9dacgYZCD5lPuhs_29u3E_giUd9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
