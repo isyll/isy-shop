@@ -4,7 +4,7 @@ import 'package:isy_shop/screens/auth/widgets/social_login_button.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
 import 'package:isy_shop/services/user_auth/auth_services.dart';
 import 'package:isy_shop/services/user_auth/user.dart';
-import 'package:isy_shop/screens/auth/login_screen.dart';
+import 'package:isy_shop/screens/auth/signin_screen.dart';
 import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/theme/colors.dart';
 import 'package:isy_shop/utils/common.dart';
@@ -236,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             Navigator.of(context).pop();
                           } else {
                             Navigator.of(context)
-                                .pushNamed(LoginScreen.routeName);
+                                .pushNamed(SigninScreen.routeName);
                           }
                         },
                         style: const ButtonStyle(

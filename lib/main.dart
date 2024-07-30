@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/config/remote_config.dart';
 import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
-import 'package:isy_shop/screens/auth/login_screen.dart';
+import 'package:isy_shop/screens/auth/signin_screen.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
 import 'package:isy_shop/services/user_auth/auth_services.dart';
@@ -33,7 +33,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final inittialRoute =
-        _auth.isLoggedIn ? HomeScreen.routeName : LoginScreen.routeName;
+        _auth.isLoggedIn ? HomeScreen.routeName : SigninScreen.routeName;
 
     return GlobalLoaderOverlay(
       useDefaultLoading: false,
@@ -60,7 +60,7 @@ class App extends StatelessWidget {
         initialRoute: inittialRoute,
         routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
-          LoginScreen.routeName: (context) => const LoginScreen(),
+          SigninScreen.routeName: (context) => const SigninScreen(),
           SignupScreen.routeName: (context) => const SignupScreen(),
           ForgotPasswordScreen.routeName: (context) =>
               const ForgotPasswordScreen()

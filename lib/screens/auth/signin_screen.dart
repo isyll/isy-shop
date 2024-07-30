@@ -13,16 +13,16 @@ import 'package:isy_shop/utils/helpers/strings.dart';
 import 'package:isy_shop/widgets/large_button.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-class LoginScreen extends StatefulWidget {
+class SigninScreen extends StatefulWidget {
   static const routeName = '/login';
 
-  const LoginScreen({super.key});
+  const SigninScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SigninScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _hidePassword = true;
   bool _enableBtn = true;
