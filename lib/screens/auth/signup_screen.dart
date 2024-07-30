@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:isy_shop/config/constants.dart';
+import 'package:isy_shop/screens/auth/widgets/social_login_button.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
 import 'package:isy_shop/services/user_auth/auth_services.dart';
 import 'package:isy_shop/services/user_auth/user.dart';
@@ -201,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _SocialLoginButton(
+                  SocialLoginButton(
                       child: IconButton(
                           onPressed: () {},
                           icon: Image.asset(
@@ -211,7 +212,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(
                     width: 34,
                   ),
-                  _SocialLoginButton(
+                  SocialLoginButton(
                     child: IconButton(
                         onPressed: () {},
                         icon: Image.asset('assets/images/logos/facebook.png',
@@ -227,7 +228,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(l.dont_have_an_account),
+                    Text(l.already_have_account),
                     TextButton(
                         onPressed: () {
                           if (fromLoginPage) {
@@ -240,7 +241,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: const ButtonStyle(
                             padding: WidgetStatePropertyAll(EdgeInsets.zero)),
                         child: Text(
-                          l.sign_up,
+                          l.sign_in,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
@@ -252,29 +253,5 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
-  }
-}
-
-class _SocialLoginButton extends StatelessWidget {
-  final Widget child;
-
-  const _SocialLoginButton({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4.0),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
-                  spreadRadius: 1,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2))
-            ]),
-        child: child);
   }
 }

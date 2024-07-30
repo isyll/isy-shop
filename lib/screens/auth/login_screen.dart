@@ -3,9 +3,15 @@ import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
 import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
+import 'package:isy_shop/screens/auth/widgets/social_login_button.dart';
+import 'package:isy_shop/screens/home/home_screen.dart';
+import 'package:isy_shop/services/user_auth/auth_services.dart';
+import 'package:isy_shop/services/user_auth/user.dart';
+import 'package:isy_shop/theme/colors.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
 import 'package:isy_shop/widgets/large_button.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -19,6 +25,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _hidePassword = true;
+  bool _enableBtn = true;
+
+  final _auth = AuthServices();
+  final _user = User();
 
   bool _validateEmail(String email) => isValidEmail(email);
 
@@ -30,6 +40,36 @@ class _LoginScreenState extends State<LoginScreen> {
   void _toggleHidePassword() {
     setState(() {
       _hidePassword = !_hidePassword;
+    });
+  }
+
+  Future<bool> _signin() async {
+    final loaderOVerlay = context.loaderOverlay;
+    loaderOVerlay.show();
+
+    final user = await _auth.signInWithEmailAndPassword(
+        email: _user.email!, password: _user.password!);
+    loaderOVerlay.hide();
+    return user != null;
+  }
+
+  void _showSnackBar(bool success) {
+    final l = getAppLocalizations(context);
+
+    final snackBar = ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: success
+            ? Theme.of(context).colorScheme.success
+            : Theme.of(context).colorScheme.error,
+        content: Text(
+          success ? l.signin_sucessfully : l.signin_with_error,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: success
+                  ? Theme.of(context).colorScheme.onSuccess
+                  : Theme.of(context).colorScheme.onError),
+        )));
+
+    snackBar.closed.then((reason) {
+      Navigator.of(context).pushNamed(HomeScreen.routeName);
     });
   }
 
@@ -54,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Form(
                     key: _formKey,
+                    onChanged: () => setState(() => _enableBtn = _formKey.currentState!.validate()),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -72,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                             return null;
                           },
+                          onSaved: (value) => _user.email = value,
                         ),
                         const SizedBox(
                           height: 16,
@@ -97,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                             return null;
                           },
+                          onSaved: (value) => _user.password = value,
                         ),
                         Align(
                           alignment: Alignment.centerRight,
@@ -109,7 +152,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const Expanded(child: SizedBox()),
                         LargeButton(
-                            text: l.sign_in, disabled: false, onPressed: () {}),
+                            text: l.sign_in,
+                            disabled: !_enableBtn,
+                            onPressed: () {
+                              _formKey.currentState!.save();
+                              _signin()
+                                  .then((success) => _showSnackBar(success));
+                            }),
                       ],
                     )),
               ),
@@ -123,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _SocialLoginButton(
+                  SocialLoginButton(
                       child: IconButton(
                           onPressed: () {},
                           icon: Image.asset(
@@ -133,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     width: 34,
                   ),
-                  _SocialLoginButton(
+                  SocialLoginButton(
                     child: IconButton(
                         onPressed: () {},
                         icon: Image.asset('assets/images/logos/facebook.png',
@@ -149,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(l.already_have_account),
+                    Text(l.dont_have_an_account),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pushNamed(
@@ -172,29 +221,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-}
-
-class _SocialLoginButton extends StatelessWidget {
-  final Widget child;
-
-  const _SocialLoginButton({required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4.0),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
-                  spreadRadius: 1,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2))
-            ]),
-        child: child);
   }
 }

@@ -24,5 +24,7 @@
   "forgot_password_text": "Enter your registered email address on IsySHOP app to create a password",
   "continue_btn": "Continue",
   "user_created_successfully": "User successfully created",
-  "error_creating_user": "An error was occured when creting user"
+  "error_creating_user": "An error was occured when creting user",
+  "signin_sucessfully": "You have successfully logged in",
+  "signin_with_error": "An error was occured during logging in"
 }
