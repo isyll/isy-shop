@@ -69,7 +69,8 @@ class _LoginScreenState extends State<LoginScreen> {
         )));
 
     snackBar.closed.then((reason) {
-      Navigator.of(context).pushNamed(HomeScreen.routeName);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
     });
   }
 
@@ -94,7 +95,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Form(
                     key: _formKey,
-                    onChanged: () => setState(() => _enableBtn = _formKey.currentState!.validate()),
+                    onChanged: () => setState(
+                        () => _enableBtn = _formKey.currentState!.validate()),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

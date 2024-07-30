@@ -9,6 +9,7 @@ import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
 import 'package:isy_shop/screens/auth/login_screen.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
+import 'package:isy_shop/services/user_auth/auth_services.dart';
 import 'package:isy_shop/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -21,14 +22,19 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await RemoteConfig.init();
-  runApp(const App());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final _auth = AuthServices();
+
+  App({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final inittialRoute =
+        _auth.isLoggedIn ? HomeScreen.routeName : LoginScreen.routeName;
+
     return GlobalLoaderOverlay(
       useDefaultLoading: false,
       overlayColor: Colors.black.withOpacity(0.25),
@@ -51,7 +57,7 @@ class App extends StatelessWidget {
         ],
         locale: AppConfig.defaultLocale,
         supportedLocales: AppConfig.supportedLocales,
-        initialRoute: SignupScreen.routeName,
+        initialRoute: inittialRoute,
         routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
           LoginScreen.routeName: (context) => const LoginScreen(),

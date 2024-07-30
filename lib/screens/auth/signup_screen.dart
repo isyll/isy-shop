@@ -60,7 +60,8 @@ class _SignupScreenState extends State<SignupScreen> {
         )));
 
     snackBar.closed.then((reason) {
-      Navigator.of(context).pushNamed(HomeScreen.routeName);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
     });
   }
 

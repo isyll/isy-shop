@@ -34,4 +34,6 @@ class AuthServices {
   }
 
   User? get currentUser => _firebaseAuth.currentUser;
+
+  bool get isLoggedIn => currentUser != null;
 }
