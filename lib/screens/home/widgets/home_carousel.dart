@@ -52,8 +52,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
               width: i == _currentIndex ? size * 4 : size,
               height: size,
               decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(i == _currentIndex ? 10 : 100),
+                  borderRadius: BorderRadius.circular(10),
                   color: const Color(0xff9e9e9e)),
             )
         ],
