@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isy_shop/config/constants.dart';
+import 'package:isy_shop/screens/auth/signup_arguments.dart';
+import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
 import 'package:isy_shop/widget/button.dart';
@@ -16,8 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _hidePassword = true;
 
-  bool _validatePassword(String password) =>
-      password.length >= 6 && containsUpperCaseAndSpecialChar(password);
   bool _validateEmail(String email) => isValidEmail(email);
 
   Widget _labelText(String text) => Text(
@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         _labelText(l.email),
                         TextFormField(
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                               hintText: l.enter_your_email,
                               prefixIcon: const Icon(Icons.email_outlined)),
@@ -76,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _labelText(l.password),
                         TextFormField(
                           obscureText: _hidePassword,
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.visiblePassword,
                           enableSuggestions: false,
                           autocorrect: false,
                           obscuringCharacter: AppConfig.obscuringCharacter,
@@ -92,9 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (value == null || value.isEmpty) {
                               return l.password_empty;
                             }
-                            if (!_validatePassword(value)) {
-                              return l.password_invalid;
-                            }
                             return null;
                           },
                         ),
@@ -105,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const Expanded(child: SizedBox()),
                         Button(
-                            text: l.login, disabled: false, onPressed: () {}),
+                            text: l.sign_in, disabled: false, onPressed: () {}),
                       ],
                     )),
               ),
@@ -114,56 +112,56 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 20,
             ),
             Align(alignment: Alignment.center, child: Text(l.or)),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: SizedBox(
-                height: 76,
+            SizedBox(
+              height: 76,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _SocialLoginButton(
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: Image.asset(
+                            'assets/images/logos/google.png',
+                            width: 34,
+                          ))),
+                  const SizedBox(
+                    width: 34,
+                  ),
+                  _SocialLoginButton(
+                    child: IconButton(
+                        onPressed: () {},
+                        icon: Image.asset('assets/images/logos/facebook.png',
+                            width: 30)),
+                  )
+                ],
+              ),
+            ),
+            Container(
+                height: 50,
+                margin: const EdgeInsets.only(bottom: 16),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _SocialLoginButton(
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/images/logos/google.png',
-                              width: 34,
-                            ))),
-                    const SizedBox(
-                      width: 34,
-                    ),
-                    _SocialLoginButton(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: Image.asset('assets/images/logos/facebook.png',
-                              width: 30)),
-                    )
+                    Text(l.already_have_account),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                              SignupScreen.routeName,
+                              arguments:
+                                  const SignupArguments(fromLoginPage: true));
+                        },
+                        style: const ButtonStyle(
+                            padding: WidgetStatePropertyAll(EdgeInsets.zero)),
+                        child: Text(
+                          l.sign_up,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(color: const Color(0xfff5918a)),
+                        ))
                   ],
-                ),
-              ),
-            ),
-            Align(
-              child: Container(
-                  height: 50,
-                  margin: const EdgeInsets.only(bottom: 16),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(l.dont_have_an_account),
-                      TextButton(
-                          onPressed: () {},
-                          style: const ButtonStyle(
-                              padding: WidgetStatePropertyAll(EdgeInsets.zero)),
-                          child: Text(
-                            l.sign_up,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(color: const Color(0xfff5918a)),
-                          ))
-                    ],
-                  )),
-            )
+                ))
           ],
         ),
       ),
@@ -174,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
 class _SocialLoginButton extends StatelessWidget {
   final Widget child;
 
-  const _SocialLoginButton({super.key, required this.child});
+  const _SocialLoginButton({required this.child});
 
   @override
   Widget build(BuildContext context) {

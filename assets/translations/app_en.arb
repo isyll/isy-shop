@@ -14,5 +14,11 @@
   "email_empty": "Enter an email",
   "email_invalid": "Enter valid email",
   "password_empty": "Enter password",
-  "password_invalid": "Your password must be at least 6 characters & must contains special chars"
+  "password_invalid": "Your password must be at least 6 characters & must contains special chars",
+  "fullname": "Full name",
+  "enter_fullname": "Enter your full name",
+  "already_have_account": "Already have an account?",
+  "register": "Register",
+  "sign_in": "Sign In",
+  "create_an_account": "Create an account"
 }

@@ -14,5 +14,11 @@
   "email_empty": "Veuillez saisir un email",
   "email_invalid": "Veuillez saisir un email valide",
   "password_empty": "Entrez un mot de passe",
-  "password_invalid": "Mot de passe invalide"
+  "password_invalid": "Mot de passe invalide",
+  "fullname": "Nom complet",
+  "enter_fullname": "Entrez votre nom complet",
+  "already_have_account": "Vous possédez déjà un compte?",
+  "register": "Inscription",
+  "sign_in": "Inscrivez-vous",
+  "create_an_account": "Créer un compte"
 }
