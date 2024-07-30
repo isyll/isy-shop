@@ -8,7 +8,7 @@ import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/theme/colors.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
-import 'package:isy_shop/widget/large_button.dart';
+import 'package:isy_shop/widgets/large_button.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 class SignupScreen extends StatefulWidget {

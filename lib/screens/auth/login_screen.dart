@@ -5,7 +5,7 @@ import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
-import 'package:isy_shop/widget/large_button.dart';
+import 'package:isy_shop/widgets/large_button.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
