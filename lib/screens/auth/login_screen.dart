@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _labelText(l.password),
                         TextFormField(
                           obscureText: _hidePassword,
-                          keyboardType: TextInputType.visiblePassword,
+                          keyboardType: TextInputType.emailAddress,
                           enableSuggestions: false,
                           autocorrect: false,
                           obscuringCharacter: AppConfig.obscuringCharacter,
@@ -179,6 +179,8 @@ class _SocialLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 50,
+        height: 50,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(4.0),
