@@ -32,7 +32,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final inittialRoute =
+    final initialRoute =
         _auth.isLoggedIn ? HomeScreen.routeName : SigninScreen.routeName;
 
     return GlobalLoaderOverlay(
@@ -57,7 +57,7 @@ class App extends StatelessWidget {
         ],
         locale: AppConfig.defaultLocale,
         supportedLocales: AppConfig.supportedLocales,
-        initialRoute: inittialRoute,
+        initialRoute: initialRoute,
         routes: {
           HomeScreen.routeName: (context) => const HomeScreen(),
           SigninScreen.routeName: (context) => const SigninScreen(),
