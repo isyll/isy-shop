@@ -5,7 +5,7 @@ class AppTextTheme {
   static final light = TextTheme(
     displayLarge: TextStyle(
         color: AppColors.lightColorScheme.onSurface,
-        fontSize: 36,
+        fontSize: 32,
         fontWeight: FontWeight.w500,
         letterSpacing: 0),
     labelMedium: TextStyle(

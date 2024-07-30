@@ -6,7 +6,7 @@
   "enter_your_email": "Enter your email here",
   "password": "Password",
   "place_your_password": "Place your password here",
-  "forgot_password": "Forgot your password?",
+  "forgot_password": "Forgot Password?",
   "login": "Log In",
   "or": "Or",
   "dont_have_an_account": "Don't have an account yet?",
@@ -20,5 +20,7 @@
   "already_have_account": "Already have an account?",
   "register": "Register",
   "sign_in": "Sign In",
-  "create_an_account": "Create an account"
+  "create_an_account": "Create an account",
+  "forgot_password_text": "Enter your registered email address on IsySHOP app to create a password",
+  "continue_btn": "Continue"
 }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:isy_shop/config/constants.dart';
-import 'package:isy_shop/screens/auth/signup_arguments.dart';
+import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
+import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
-import 'package:isy_shop/widget/button.dart';
+import 'package:isy_shop/widget/large_button.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
   static const routeName = '/login';
+
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -99,10 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                              onPressed: () {}, child: Text(l.forgot_password)),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(ForgotPasswordScreen.routeName);
+                              },
+                              child: Text(l.forgot_password)),
                         ),
                         const Expanded(child: SizedBox()),
-                        Button(
+                        LargeButton(
                             text: l.sign_in, disabled: false, onPressed: () {}),
                       ],
                     )),

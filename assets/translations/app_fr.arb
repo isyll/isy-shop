@@ -20,5 +20,7 @@
   "already_have_account": "Vous possédez déjà un compte?",
   "register": "Inscription",
   "sign_in": "Inscrivez-vous",
-  "create_an_account": "Créer un compte"
+  "create_an_account": "Créer un compte",
+  "forgot_password_text": "Entrez l'adresse email que vous avez créé sur l'application IsySHOP pour créer un mot de passe",
+  "continue_btn": "Continuer"
 }

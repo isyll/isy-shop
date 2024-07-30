@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/config/remote_config.dart';
+import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
 import 'package:isy_shop/screens/auth/login_screen.dart';
 import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
@@ -43,7 +44,8 @@ class App extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
-        SignupScreen.routeName: (context) => const SignupScreen()
+        SignupScreen.routeName: (context) => const SignupScreen(),
+        ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen()
       },
     );
   }

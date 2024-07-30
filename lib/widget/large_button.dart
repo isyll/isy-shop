@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class LargeButton extends StatelessWidget {
   final String text;
   final bool disabled;
-  final Function() onPressed;
+  final void Function() onPressed;
 
-  const Button(
+  const LargeButton(
       {super.key,
       required this.text,
       required this.disabled,

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/screens/auth/login_screen.dart';
-import 'package:isy_shop/screens/auth/signup_arguments.dart';
+import 'package:isy_shop/screens/auth/routes/signup_arguments.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
-import 'package:isy_shop/widget/button.dart';
+import 'package:isy_shop/widget/large_button.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
   static const routeName = '/signup';
+
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -128,8 +129,10 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                         ),
                         const Expanded(child: SizedBox()),
-                        Button(
-                            text: l.register, disabled: false, onPressed: () {}),
+                        LargeButton(
+                            text: l.register,
+                            disabled: false,
+                            onPressed: () {}),
                       ],
                     )),
               ),
