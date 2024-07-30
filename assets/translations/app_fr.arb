@@ -1,3 +1,18 @@
 {
-    "helloWorld": "Bonjour à tous!"
+  "@@locale": "fr",
+  "@@author": "Ibrahima Sylla",
+  "welcome_back": "Bienvenue",
+  "email": "E-mail",
+  "enter_your_email": "Tapez votre email ici",
+  "password": "Mot de passe",
+  "place_your_password": "Tapez votre mot de passe ici",
+  "forgot_password": "Mot de passe oublié?",
+  "login": "Connexion",
+  "or": "Ou",
+  "dont_have_an_account": "Vous n'avez pas encore de compte?",
+  "sign_up": "Inscrivez-vous",
+  "email_empty": "Veuillez saisir un email",
+  "email_invalid": "Veuillez saisir un email valide",
+  "password_empty": "Entrez un mot de passe",
+  "password_invalid": "Mot de passe invalide"
 }

@@ -4,12 +4,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/config/remote_config.dart';
+import 'package:isy_shop/screens/auth/login_screen.dart';
+import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
 import 'package:isy_shop/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -26,15 +29,22 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.appName,
       theme: AppTheme.light,
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      locale: AppConfig.defaultLocale,
       supportedLocales: AppConfig.supportedLocales,
-      home: const AuthenticationGate(),
-      routes: {HomeScreen.routeName: (context) => const HomeScreen()},
+      //   home: const AuthenticationGate(),
+      initialRoute: LoginScreen.routeName,
+      routes: {
+        HomeScreen.routeName: (context) => const HomeScreen(),
+        LoginScreen.routeName: (context) => const LoginScreen(),
+        SignupScreen.routeName: (context) => const SignupScreen()
+      },
     );
   }
 }
@@ -53,7 +63,7 @@ class _AuthenticationGateState extends State<AuthenticationGate> {
   Future<void> _checkAuthentication() async {
     _isLoading = true;
     setState(() {
-      _isAuthenticated = true;
+      _isAuthenticated = false;
       _isLoading = false;
     });
   }
@@ -73,10 +83,7 @@ class _AuthenticationGateState extends State<AuthenticationGate> {
     }
 
     if (!_isAuthenticated) {
-      return const Scaffold(
-          body: Center(
-        child: Text('Not authenticated'),
-      ));
+      return const LoginScreen();
     }
     return const HomeScreen();
   }
