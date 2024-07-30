@@ -22,5 +22,7 @@
   "sign_in": "Inscrivez-vous",
   "create_an_account": "Créer un compte",
   "forgot_password_text": "Entrez l'adresse email que vous avez créé sur l'application IsySHOP pour créer un mot de passe",
-  "continue_btn": "Continuer"
+  "continue_btn": "Continuer",
+  "user_created_successfully": "Utilisateur créé avec succès",
+  "error_creating_user": "Une erreur est survenue"
 }

@@ -4,7 +4,7 @@ class AppTextButtonTheme {
   static final light = TextButtonThemeData(
       style: ButtonStyle(
           textStyle: WidgetStateTextStyle.resolveWith((states) {
-            if (states.contains(WidgetState.focused)) {
+            if (states.contains(WidgetState.pressed)) {
               return const TextStyle(decoration: TextDecoration.underline);
             }
             return const TextStyle(decoration: TextDecoration.none);

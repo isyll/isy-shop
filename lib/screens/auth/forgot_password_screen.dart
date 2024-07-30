@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:isy_shop/utils/common.dart';
 import 'package:isy_shop/utils/helpers/strings.dart';
@@ -17,7 +19,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool _disabled = true;
 
   void _onSubmit() {
-    // final email = _emailController.text.toLowerCase().trim();
+    final email = _emailController.text.toLowerCase().trim();
+    log(email);
   }
 
   void _checkDisabled() {

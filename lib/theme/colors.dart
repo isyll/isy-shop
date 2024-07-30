@@ -15,6 +15,6 @@ class AppColors {
 }
 
 extension ColorSchemeExtension on ColorScheme {
-  Color get success => const Color(0xff81cea1);
-  Color get onSuccess => const Color(0xffffffff);
+  Color get onSuccess => const Color(0xff81cea1);
+  Color get success => const Color(0xffffffff);
 }

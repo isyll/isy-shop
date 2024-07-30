@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:isy_shop/config/constants.dart';
 import 'package:isy_shop/config/remote_config.dart';
 import 'package:isy_shop/screens/auth/forgot_password_screen.dart';
@@ -10,6 +11,7 @@ import 'package:isy_shop/screens/auth/signup_screen.dart';
 import 'package:isy_shop/screens/home/home_screen.dart';
 import 'package:isy_shop/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,66 +29,37 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppConfig.appName,
-      theme: AppTheme.light,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      locale: AppConfig.defaultLocale,
-      supportedLocales: AppConfig.supportedLocales,
-      //   home: const AuthenticationGate(),
-      initialRoute: LoginScreen.routeName,
-      routes: {
-        HomeScreen.routeName: (context) => const HomeScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        SignupScreen.routeName: (context) => const SignupScreen(),
-        ForgotPasswordScreen.routeName: (context) => const ForgotPasswordScreen()
-      },
+    return GlobalLoaderOverlay(
+      useDefaultLoading: false,
+      overlayColor: Colors.black.withOpacity(0.25),
+      overlayWidgetBuilder: (_) => Center(
+        child: SpinKitRing(
+          lineWidth: 4,
+          color: Colors.black.withOpacity(0.5),
+          size: 50.0,
+        ),
+      ),
+      child: MaterialApp(
+        title: AppConfig.appName,
+        theme: AppTheme.light,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        locale: AppConfig.defaultLocale,
+        supportedLocales: AppConfig.supportedLocales,
+        initialRoute: SignupScreen.routeName,
+        routes: {
+          HomeScreen.routeName: (context) => const HomeScreen(),
+          LoginScreen.routeName: (context) => const LoginScreen(),
+          SignupScreen.routeName: (context) => const SignupScreen(),
+          ForgotPasswordScreen.routeName: (context) =>
+              const ForgotPasswordScreen()
+        },
+      ),
     );
-  }
-}
-
-class AuthenticationGate extends StatefulWidget {
-  const AuthenticationGate({super.key});
-
-  @override
-  State<AuthenticationGate> createState() => _AuthenticationGateState();
-}
-
-class _AuthenticationGateState extends State<AuthenticationGate> {
-  bool _isAuthenticated = false;
-  bool _isLoading = true;
-
-  Future<void> _checkAuthentication() async {
-    _isLoading = true;
-    setState(() {
-      _isAuthenticated = false;
-      _isLoading = false;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _checkAuthentication();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    if (!_isAuthenticated) {
-      return const LoginScreen();
-    }
-    return const HomeScreen();
   }
 }
