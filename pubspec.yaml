@@ -39,10 +39,11 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_core: ^3.2.0
   firebase_auth: ^5.1.2
+  cloud_firestore: ^5.2.0
   loader_overlay: ^4.0.1
   flutter_spinkit: ^5.2.1
   carousel_slider: ^4.2.1
-  cloud_firestore: ^5.2.0
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -99,3 +100,18 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_native_splash:
+  color: '#ffffff'
+  color_dark: '#ffffff'
+  image: 'assets/brand/logos/isyshop.png'
+  image_dark: 'assets/brand/logos/isyshop.png'
+  android_12:
+    color: '#ffffff'
+    color_dark: '#ffffff'
+    image: 'assets/brand/logos/isyshop.png'
+    image_dark: 'assets/brand/logos/isyshop.png'
+    android: true
+    ios: true
+  android: true
+  ios: true
+  web: false
