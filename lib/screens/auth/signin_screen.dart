@@ -19,10 +19,10 @@ class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _LoginScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
-class _LoginScreenState extends State<SigninScreen> {
+class _SigninScreenState extends State<SigninScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _hidePassword = true;
   bool _enableBtn = true;
