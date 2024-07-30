@@ -23,7 +23,9 @@ class Button extends StatelessWidget {
                   side: BorderSide.none)),
               backgroundColor: WidgetStatePropertyAll(disabled
                   ? const Color(0xff949299)
-                  : Theme.of(context).colorScheme.primary)),
+                  : Theme.of(context).colorScheme.primary),
+              overlayColor:
+                  WidgetStatePropertyAll(Colors.white.withOpacity(0.1))),
           onPressed: disabled ? null : onPressed,
           child: Text(
             text,

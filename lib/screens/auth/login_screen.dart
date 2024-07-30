@@ -104,7 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () {}, child: Text(l.forgot_password)),
                         ),
                         const Expanded(child: SizedBox()),
-                        Button(text: l.login, disabled: true, onPressed: () {}),
+                        Button(
+                            text: l.login, disabled: false, onPressed: () {}),
                       ],
                     )),
               ),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _SocialButton(
+                    _SocialLoginButton(
                         child: IconButton(
                             onPressed: () {},
                             icon: Image.asset(
@@ -130,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       width: 34,
                     ),
-                    _SocialButton(
+                    _SocialLoginButton(
                       child: IconButton(
                           onPressed: () {},
                           icon: Image.asset('assets/images/logos/facebook.png',
@@ -170,10 +171,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-class _SocialButton extends StatelessWidget {
+class _SocialLoginButton extends StatelessWidget {
   final Widget child;
 
-  const _SocialButton({super.key, required this.child});
+  const _SocialLoginButton({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
