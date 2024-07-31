@@ -7,8 +7,7 @@ class DbServices {
   Future<List<HomeSlide>> getHomeSlides() async {
     final List<HomeSlide> data = [];
     final result = await _db.collection('home_sliders').get();
-    for (var doc in result.docs) {
-      doc.data();
+    for (final doc in result.docs) {
       data.add(HomeSlide.fromJson(doc.data()));
     }
     return data;
