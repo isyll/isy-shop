@@ -1,15 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:isy_shop/models/content/home_slide.dart';
 
 class HomeCarousel extends StatefulWidget {
-  const HomeCarousel({super.key});
+  final List<HomeSlide> slides;
+
+  const HomeCarousel({super.key, required this.slides});
 
   @override
   State<HomeCarousel> createState() => _HomeCarouselState();
 }
 
 class _HomeCarouselState extends State<HomeCarousel> {
-  final _items = [1, 2, 3];
   int _currentIndex = 0;
 
   @override
@@ -17,8 +19,52 @@ class _HomeCarouselState extends State<HomeCarousel> {
     return Column(
       children: [
         CarouselSlider(
-            items: _items
-                .map((i) => _CarouselItem(child: Center(child: Text('$i'))))
+            items: widget.slides
+                .map((slide) => _CarouselItem(
+                    color: Color(int.parse(slide.color)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.network(
+                              slide.imgUrl,
+                              width: 80,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                slide.title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayLarge!
+                                    .copyWith(fontSize: 24),
+                                softWrap: true,
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                slide.subTitle,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(fontSize: 14),
+                                softWrap: true,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )))
                 .toList(),
             options: CarouselOptions(
                 onPageChanged: (index, reason) {
@@ -27,7 +73,7 @@ class _HomeCarouselState extends State<HomeCarousel> {
                   });
                 },
                 initialPage: 0,
-                height: 200,
+                height: 180,
                 enableInfiniteScroll: false)),
         const SizedBox(
           height: 10,
@@ -40,38 +86,41 @@ class _HomeCarouselState extends State<HomeCarousel> {
   Widget _buildCarouselIndidator() {
     const size = 4.0;
 
-    return SizedBox(
-      height: 16,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (int i = 0; i < _items.length; i++)
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 350),
-              margin: const EdgeInsets.all(4),
-              width: i == _currentIndex ? size * 4 : size,
-              height: size,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: const Color(0xff9e9e9e)),
-            )
-        ],
-      ),
-    );
+    return widget.slides.isEmpty
+        ? const SizedBox()
+        : SizedBox(
+            height: 16,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < widget.slides.length; i++)
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 350),
+                    margin: const EdgeInsets.all(4),
+                    width: i == _currentIndex ? size * 4 : size,
+                    height: size,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).colorScheme.tertiary),
+                  )
+              ],
+            ),
+          );
   }
 }
 
 class _CarouselItem extends StatelessWidget {
   final Widget child;
+  final Color color;
 
-  const _CarouselItem({required this.child});
+  const _CarouselItem({required this.child, required this.color});
 
   @override
   Widget build(BuildContext context) => Container(
       margin: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.black45,
+        color: color,
       ),
       width: MediaQuery.of(context).size.width,
       child: child);
